@@ -9,8 +9,14 @@ import javax.validation.constraints.Size;
 public class Employee extends User{
     @JsonProperty(value="user_role", required=true)@Schema(description = "Role of the user.",example = "Administrator, Manager, Employee", required = true)
     @NotBlank
-    @Size(min = 0)
     private String user_status;
+
+    public Employee() {
+    }
+
+    public Employee(Long userId, String name, String userType, String user_email, String user_status) {
+        super(userId, name, userType, user_email, user_status);
+    }
 
     public String getUser_status() {
         return user_status;
