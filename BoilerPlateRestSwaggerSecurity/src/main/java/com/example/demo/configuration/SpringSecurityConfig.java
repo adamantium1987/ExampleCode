@@ -25,11 +25,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
 
-                .antMatchers("/swagger-ui/**").permitAll()
-                .anyRequest().authenticated()
-                .and().httpBasic();
+        // H2-Database Code
+        // THIS IS NOT PRODUCTION CODE; THIS IS ONLY FOR DEMO PURPOSES!
+        http.authorizeRequests().antMatchers("/console/**").permitAll();
+        http.csrf().ignoringAntMatchers("/console/**").and().headers().frameOptions().sameOrigin();
+        // End H2-Database Code
+
+        http.authorizeRequests().antMatchers("/swagger-ui/**").permitAll().anyRequest().authenticated().and().httpBasic();
         http.csrf().disable();
+
     }
 }

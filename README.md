@@ -6,6 +6,13 @@ Import into ide.
 Run as spring application.
 navigate to localhost:8080/swagger-ui.html to view the API documentation
 
+H2 Database Credentials
+H2 URL: /data/boilerplatedemo
+Username: sa
+Password: password
+
+
+Application Credentials
 Username: admin
 Password: 123
 
