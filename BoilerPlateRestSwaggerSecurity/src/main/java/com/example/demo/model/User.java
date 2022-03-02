@@ -6,72 +6,77 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Schema(description = "Model object")
+@Schema(description = "User object")
 @Entity
-@Table(name="models")
+@Table(name="users")
 public class User {
 
-    @JsonProperty(value="modelId", required=true)
-    @Schema(description = "Unique identifier of the model.",
-            example = "1", required = true)
-    private Long modelId;
+    @JsonProperty(value="userId", required=true)    @Schema(description = "Unique identifier of the model.",example = "1", required = true)
+    private Long userId;
 
-    @JsonProperty(value="fieldOne", required=true)
-    @Schema(description = "Field One",
-            example = "Lorem Ipsum", required = true)
+    @JsonProperty(value="name", required=true)@Schema(description = "First and Last name of user",example = "John Doe, Jane Doe", required = true)
     @NotBlank
     @Size(min = 0)
-    private String fieldOne;
+    private String name;
 
-    @JsonProperty(value="FieldTwo", required=true)
-    @Schema(description = "Field two",
-            example = "Lorem Ipsum Two", required = true)
+    @JsonProperty(value="user_type", required=true)@Schema(description = "User type of the user.",example = "Employee or Customer", required = true)
     @NotBlank
     @Size(min = 0)
-    private String fieldTwo;
+    private String userType;
 
-    @JsonProperty(value="fieldThree", required=true)
-    @Schema(description = "Field Three",
-            example = "Lorem Ipsum Three", required = true)
+    @JsonProperty(value="user_email", required=true)@Schema(description = "User email address of the user.",example = "john.doe@email.com", required = true)
     @NotBlank
     @Size(min = 0)
-    private double fieldThree;
+    private String user_email;
+
+    @JsonProperty(value="user_status", required=true)@Schema(description = "User status of the user.",example = "Active or Inactive", required = true)
+    @NotBlank
+    @Size(min = 0)
+    private String user_status;
 
     public User() {
     }
 
+    enum UserStatus {
+        ACTIVE,
+        INACTIVE
+    }
+
+    enum UserType {
+        EMPLOYEE,
+        CUSTOMER
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
-    public Long getModelId() {
-        return modelId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setModelId(Long modelId) {
-        this.modelId = modelId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getFieldOne() {
-        return fieldOne;
+    public String getName() {
+        return name;
     }
 
-    public void setFieldOne(String fieldOne) {
-        this.fieldOne = fieldOne;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFieldTwo() {
-        return fieldTwo;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setFieldTwo(String fieldTwo) {
-        this.fieldTwo = fieldTwo;
+    public void setUserType(String type) {
+        this.userType = type;
     }
 
-    public double getFieldThree() {
-        return fieldThree;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public void setFieldThree(double fieldThree) {
-        this.fieldThree = fieldThree;
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
     }
 }
