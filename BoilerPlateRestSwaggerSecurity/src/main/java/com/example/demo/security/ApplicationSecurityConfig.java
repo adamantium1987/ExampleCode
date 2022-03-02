@@ -59,7 +59,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // H2-Database Code
         // THIS IS NOT PRODUCTION CODE; THIS IS ONLY FOR DEMO PURPOSES!
-        http.authorizeRequests().antMatchers("/console/**").permitAll();
+        http.authorizeRequests().antMatchers("/console/**").hasRole(ADMINISTRATOR.name());
+        http.authorizeRequests().antMatchers("/api/**/admin").hasRole(ADMINISTRATOR.name());
+        http.authorizeRequests().antMatchers("/api/**/manager").hasRole(MANAGER.name());
+        http.authorizeRequests().antMatchers("/api/**/employee").hasRole(EMPLOYEE.name());
+        http.authorizeRequests().antMatchers("/api/**/customer").hasRole(CUSTOMER.name());
         http.csrf().ignoringAntMatchers("/console/**").and().headers().frameOptions().sameOrigin();
         // End H2-Database Code
 
