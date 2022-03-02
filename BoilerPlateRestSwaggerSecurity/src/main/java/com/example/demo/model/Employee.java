@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 public class Employee extends User{
     @JsonProperty(value="user_role", required=true)@Schema(description = "Role of the user.",example = "Administrator, Manager, Employee", required = true)
