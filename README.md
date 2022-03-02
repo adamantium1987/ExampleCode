@@ -13,7 +13,17 @@ Password: password
 
 
 Application Credentials
+Admin
 Username: admin
+Password: 123
+Manager
+Username: manager
+Password: 123
+Employee
+Username: employee
+Password: 123
+Customer
+Username: customer
 Password: 123
 
 To-Do:
