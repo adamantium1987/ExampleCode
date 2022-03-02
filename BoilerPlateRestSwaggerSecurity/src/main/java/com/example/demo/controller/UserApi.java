@@ -82,7 +82,7 @@ public interface UserApi {
     @ResponseStatus(HttpStatus.OK)
     User getUserHeader();
 
-    @Operation(summary = "Delete User.", description = "This can only be done by the logged in User.", tags = { "User" })
+    @Operation(summary = "Delete User.", description = "This can only be done by the logged in User.", tags = { "user" })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = User.class))),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
