@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.persistence.*;
@@ -11,7 +9,7 @@ import javax.validation.constraints.Size;
 @Schema(description = "Employee object")
 @Entity
 @Table(name="employees")
-public class Employee {
+public class Model {
 
     @JsonProperty(value="empId", required=true)
     @Schema(description = "Unique identifier of the Employee.",
@@ -27,7 +25,7 @@ public class Employee {
     private String designation;
     private double salary;
 
-    public Employee() {
+    public Model() {
     }
 
     @Id
