@@ -9,39 +9,5 @@ import java.util.Collection;
 
 @RestController
 @SecurityRequirement(name="BoilerPlateAPI")
-public class EmployeeApiController implements UserApi {
-    @Override
-    public ResponseEntity<User> findById(long id) throws Exception {
-        return null;
-    }
-
-    @Override
-    public Collection<User> findUsers() {
-        return null;
-    }
-
-    @Override
-    public User updateUser(String id, User user) {
-        return null;
-    }
-
-    @Override
-    public User patchUser(String id, User user) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<User> postUser(User body) throws Exception {
-        return null;
-    }
-
-    @Override
-    public User getUserHeader() {
-        return null;
-    }
-
-    @Override
-    public long deleteUser(long id) throws Exception {
-        return 0;
-    }
+public class EmployeeApiController {
 }
