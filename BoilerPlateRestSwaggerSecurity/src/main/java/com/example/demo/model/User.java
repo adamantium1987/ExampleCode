@@ -37,15 +37,6 @@ public class User {
     public User() {
     }
 
-    enum UserStatus {
-        ACTIVE,
-        INACTIVE
-    }
-
-    enum UserType {
-        EMPLOYEE,
-        CUSTOMER
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getUserId() {

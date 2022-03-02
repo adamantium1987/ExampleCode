@@ -12,11 +12,6 @@ public class Employee extends User{
     @Size(min = 0)
     private String user_status;
 
-    enum Role {
-        ADMINISTRATOR,
-        MANAGER,
-        EMPLOYEE
-    }
     public String getUser_status() {
         return user_status;
     }
