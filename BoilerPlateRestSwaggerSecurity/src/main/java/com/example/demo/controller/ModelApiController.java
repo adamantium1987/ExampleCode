@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.exception.ModelNotFoundException;
 import com.example.demo.model.Model;
 import com.example.demo.repository.ModelRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
+@SecurityRequirement(name="BoilerPlateAPI")
 public class ModelApiController implements ModelApi {
 
     private final ModelRepository repository;
