@@ -14,7 +14,7 @@ public class Model {
     @JsonProperty(value="modelId", required=true)
     @Schema(description = "Unique identifier of the model.",
             example = "1", required = true)
-    private String modelId;
+    private Long modelId;
 
     @JsonProperty(value="fieldOne", required=true)
     @Schema(description = "Field One",
@@ -43,11 +43,11 @@ public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
-    public String getModelId() {
+    public Long getModelId() {
         return modelId;
     }
 
-    public void setModelId(String modelId) {
+    public void setModelId(Long modelId) {
         this.modelId = modelId;
     }
 

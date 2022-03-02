@@ -19,13 +19,8 @@ public class ModelApiController implements ModelApi {
     }
 
     @Override
-    public ResponseEntity<Model> findById(
-            long id,
-            String modelAuthorization) throws Exception {
-
-        Model model = repository.findById(id)
-                .orElseThrow(() -> new ModelNotFoundException("Model not found for this id :: " + id));
-
+    public ResponseEntity<Model> findById( long id ) throws Exception {
+        Model model = repository.findById(id).orElseThrow(() -> new ModelNotFoundException("Model not found for this id: " + id));
         return ResponseEntity.ok().body(model);
     }
 
@@ -36,24 +31,18 @@ public class ModelApiController implements ModelApi {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Model updateModel(@PathVariable("id") final String id, @RequestBody final Model
-            model
-    ) {
+    public Model updateModel(@PathVariable("id") final String id, @RequestBody final Model model) {
         return model;
     }
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Model patchModel(@PathVariable("id") final String id, @RequestBody final Model
-            model
-    ) {
+    public Model patchModel(@PathVariable("id") final String id, @RequestBody final Model model) {
         return model;
     }
 
     @Override
-    public ResponseEntity<Model> postModel(
-            Model body,
-            String modelAuthorization) {
+    public ResponseEntity<Model> postModel( Model body ) {
         return new ResponseEntity<>(repository.save(body), HttpStatus.CREATED);
     }
 
@@ -65,7 +54,13 @@ public class ModelApiController implements ModelApi {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public long deleteModel(@PathVariable final long id) {
+    public long deleteModel(@PathVariable final long id) throws Exception {
+        try {
+            repository.deleteById(id);
+        }
+        catch(Exception e){
+            throw new ModelNotFoundException("Model not found for this id: " + id);
+        }
         return id;
     }
 }
