@@ -6,61 +6,72 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Schema(description = "Employee object")
+@Schema(description = "Model object")
 @Entity
-@Table(name="employees")
+@Table(name="models")
 public class Model {
 
-    @JsonProperty(value="empId", required=true)
-    @Schema(description = "Unique identifier of the Employee.",
-            example = "000001", required = true)
-    private String empId;
+    @JsonProperty(value="modelId", required=true)
+    @Schema(description = "Unique identifier of the model.",
+            example = "1", required = true)
+    private String modelId;
 
-    @JsonProperty(value="name", required=true)
-    @Schema(description = "First and Last Name of the Employee.",
-            example = "John Doe, Jane Doe", required = true)
+    @JsonProperty(value="fieldOne", required=true)
+    @Schema(description = "Field One",
+            example = "Lorem Ipsum", required = true)
     @NotBlank
     @Size(min = 0)
-    private String name;
-    private String designation;
-    private double salary;
+    private String fieldOne;
+
+    @JsonProperty(value="FieldTwo", required=true)
+    @Schema(description = "Field two",
+            example = "Lorem Ipsum Two", required = true)
+    @NotBlank
+    @Size(min = 0)
+    private String fieldTwo;
+
+    @JsonProperty(value="fieldThree", required=true)
+    @Schema(description = "Field Three",
+            example = "Lorem Ipsum Three", required = true)
+    @NotBlank
+    @Size(min = 0)
+    private double fieldThree;
 
     public Model() {
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public String getEmpId() {
-        return empId;
+
+    public String getModelId() {
+        return modelId;
     }
 
-    public void setEmpId(String empId) {
-        this.empId = empId;
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
     }
 
-    @Column(name = "Employee_Name", nullable = false)
-    public String getName() {
-        return name;
+    public String getFieldOne() {
+        return fieldOne;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFieldOne(String fieldOne) {
+        this.fieldOne = fieldOne;
     }
 
-    public String getDesignation() {
-        return designation;
+    public String getFieldTwo() {
+        return fieldTwo;
     }
 
-    public void setDesignation(String designation) {
-        this.designation = designation;
+    public void setFieldTwo(String fieldTwo) {
+        this.fieldTwo = fieldTwo;
     }
 
-    public double getSalary() {
-        return salary;
+    public double getFieldThree() {
+        return fieldThree;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setFieldThree(double fieldThree) {
+        this.fieldThree = fieldThree;
     }
-
 }
