@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Model;
+import com.example.demo.model.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -16,80 +16,80 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
-@Tag(name = "model", description = "the model API")
-@RequestMapping("/api/v1/models")
-public interface ModelApi {
+@Tag(name = "user", description = "the User API")
+@RequestMapping("/api/v1/user")
+public interface UserApi {
 
-    @Operation(summary = "Find model by ID", description = "Returns a single model", tags = { "model" })
+    @Operation(summary = "Find User by ID", description = "Returns a single user", tags = { "user" })
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Model.class))),
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = User.class))),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content),
             @ApiResponse(responseCode = "404", description = "model not found", content = @Content) })
     @RequestMapping(value = "/{id}", produces = { "application/json",  "application/vnd.api+json"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<Model> findById(
-            @Parameter(description = "ID of model", required = true)
+    ResponseEntity<User> findById(
+            @Parameter(description = "ID of User", required = true)
             @PathVariable long id)
             throws Exception;
 
-    @Operation(summary = "Get All Models.", description = "Returns a models collection", tags = { "model" })
+    @Operation(summary = "Get All Users.", description = "Returns a users collection", tags = { "user" })
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Model.class))),
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = User.class))),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content),
             @ApiResponse(responseCode = "404", description = "model not found", content = @Content) })
     @RequestMapping(value = "/", produces = { "application/json",  "application/vnd.api+json"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    Collection<Model> findModels();
+    Collection<User> findUsers();
 
-    @Operation(summary = "Update Model.", description = "This can only be done by the logged in model.", tags = { "model" })
+    @Operation(summary = "Update User.", description = "This can only be done by the logged in user.", tags = { "user" })
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Model.class))),
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = User.class))),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content),
             @ApiResponse(responseCode = "404", description = "model not found", content = @Content) })
     @RequestMapping(value = "/{id}", produces = { "application/json",  "application/vnd.api+json"}, method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    Model updateModel(@PathVariable("id") final String id, @RequestBody final Model model);
+    User updateUser(@PathVariable("id") final String id, @RequestBody final User user);
 
-    @Operation(summary = "Patch Model.", description = "This can only be done by the logged in model.", tags = { "model" })
+    @Operation(summary = "Patch User.", description = "This can only be done by the logged in user.", tags = { "user" })
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Model.class))),
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = User.class))),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content),
             @ApiResponse(responseCode = "404", description = "model not found", content = @Content) })
     @RequestMapping(value = "/{id}", produces = { "application/json",  "application/vnd.api+json"}, method = RequestMethod.PATCH)
     @ResponseStatus(HttpStatus.OK)
-    Model patchModel(@PathVariable("id") final String id, @RequestBody final Model model);
+    User patchUser(@PathVariable("id") final String id, @RequestBody final User user);
 
-    @Operation(summary = "Create Model.", description = "This can only be done by the logged in model.", tags = { "model" })
+    @Operation(summary = "Create User.", description = "This can only be done by the logged in user.", tags = { "user" })
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = Model.class)), @Content(mediaType = "application/xml", schema = @Schema(implementation = Model.class)) }),
+            @ApiResponse(responseCode = "200", description = "successful operation", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)), @Content(mediaType = "application/xml", schema = @Schema(implementation = User.class)) }),
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content)})
     @RequestMapping(value = "/", consumes = {  "application/json", "application/xml", "application/x-www-form-urlencoded"  }, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<Model> postModel(
+    ResponseEntity<User> postUser(
             @NotNull
-            @Parameter(description = "Created model object", required = true)
-            @Valid @RequestBody Model body)
+            @Parameter(description = "Created user object", required = true)
+            @Valid @RequestBody User body)
             throws Exception;
 
-    @Operation(summary = "Get header information for the model", tags = { "model" })
+    @Operation(summary = "Get header information for the user", tags = { "user" })
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Model.class)))})
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = User.class)))})
     @RequestMapping(value = "/", produces = { "application/json",  "application/vnd.api+json"}, method = RequestMethod.HEAD)
     @ResponseStatus(HttpStatus.OK)
-    Model headModel();
+    User getUserHeader();
 
-    @Operation(summary = "Delete Model.", description = "This can only be done by the logged in model.", tags = { "model" })
+    @Operation(summary = "Delete User.", description = "This can only be done by the logged in User.", tags = { "User" })
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = Model.class))),
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = User.class))),
             @ApiResponse(responseCode = "400", description = "Invalid ID supplied", content = @Content),
             @ApiResponse(responseCode = "403", description = "Access Denied", content = @Content),
             @ApiResponse(responseCode = "404", description = "model not found", content = @Content) })
     @RequestMapping(value = "/{id}", consumes = {  "application/json", "application/xml", "application/x-www-form-urlencoded"}, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    long deleteModel(@PathVariable final long id)
+    long deleteUser(@PathVariable final long id)
     throws Exception;
 }

@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Schema(description = "Model object")
 @Entity
 @Table(name="models")
-public class Model {
+public class User {
 
     @JsonProperty(value="modelId", required=true)
     @Schema(description = "Unique identifier of the model.",
@@ -37,7 +37,7 @@ public class Model {
     @Size(min = 0)
     private double fieldThree;
 
-    public Model() {
+    public User() {
     }
 
     @Id
