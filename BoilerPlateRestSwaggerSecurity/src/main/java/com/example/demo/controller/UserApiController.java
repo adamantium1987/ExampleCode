@@ -4,15 +4,25 @@ import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Collection;
 
 @RestController
 @SecurityRequirement(name="BoilerPlateAPI")
-public class UserApiController implements UserApi {
+@Tag(name = "user", description = "the User API")
+@RequestMapping("/api/v1/user")
+public class UserApiController{
 
     private final UserRepository repository;
 
@@ -20,49 +30,44 @@ public class UserApiController implements UserApi {
         this.repository = repository;
     }
 
-    @Override
-    public ResponseEntity<User> findById(long id ) throws Exception {
-        User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found for this id: " + id));
-        return ResponseEntity.ok().body(user);
+
+    public ResponseEntity<User> findById(@PathVariable("id") final long id ) throws UserNotFoundException {
+        return new ResponseEntity<>(repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found for this id: " + id)), HttpStatus.OK);
     }
 
-    @Override
-    public Collection<User> findUsers() {
-        return repository.findAll();
+    public ResponseEntity<Collection<User>> findUsers() {
+        return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public User updateUser(@PathVariable("id") final String id, @RequestBody final User user) {
-        return user;
-    }
-
-    @PatchMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public User patchUser(@PathVariable("id") final String id, @RequestBody final User user) {
-        return user;
-    }
-
-    @Override
-    public ResponseEntity<User> postUser(User body ) {
-        return new ResponseEntity<>(repository.save(body), HttpStatus.CREATED);
-    }
-
-    @RequestMapping(method = RequestMethod.HEAD, value = "/")
-    @ResponseStatus(HttpStatus.OK)
-    public User getUserHeader() {
-        return new User();
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public long deleteUser(@PathVariable final long id) throws Exception {
-        try {
-            repository.deleteById(id);
+    public ResponseEntity<User> updateOrCreateUser(@PathVariable("id") final long id, @RequestBody final User newUser) {
+        return new ResponseEntity<>(repository.findById(id)
+                .map(user -> {
+                    user.setFirstName(newUser.getFirstName());
+                    user.setLastName(newUser.getLastName());
+                    user.setUserName((newUser.getUserName()));
+                    user.setEmail(newUser.getEmail());
+                    user.setUserType(newUser.getUserType());
+                    return (repository.save(user));
+                })
+                .orElseGet(() -> (repository.save(newUser))), HttpStatus.OK);
         }
-        catch(Exception e){
-            throw new UserNotFoundException("User not found for this id: " + id);
-        }
-        return id;
+
+    public ResponseEntity<User> createUser(@RequestBody final User user) {
+        User newUser = new User();
+        user.setFirstName(newUser.getFirstName());
+        user.setLastName(newUser.getLastName());
+        user.setUserName((newUser.getUserName()));
+        newUser.setUserType(user.getUserType());
+        return new ResponseEntity<>(repository.save(newUser), HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<HttpStatus> deleteUserById(@PathVariable final long id){
+        repository.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity<HttpStatus> deleteAllUsers(){
+        repository.deleteAll();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
