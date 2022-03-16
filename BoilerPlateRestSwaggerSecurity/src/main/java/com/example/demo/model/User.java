@@ -35,6 +35,10 @@ public class User {
     @NotBlank
     private String userName;
 
+    @JsonProperty(value="password", required=true)@Schema(description = "Password For User",example = "JohnSmith", required = true)
+    @NotBlank
+    private String password;
+
     @JsonProperty(value="user_type", required=true)@Schema(description = "User type of the user.",example = "Employee or Customer", required = true)
     @NotBlank
     private String userType;
