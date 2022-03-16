@@ -19,7 +19,7 @@ public class UserApiController implements UserApi {
     }
 
     public ResponseEntity<User> findById(long id) throws UserNotFoundException {
-        User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found for this id :: " + id));
+        User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found for this id: " + id));
         return ResponseEntity.ok().body(user);
     }
 
