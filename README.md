@@ -31,3 +31,12 @@ Improve readme file
 Add Actuator
 Add Browser Endpoints for API  (Thymeleaf?)
 
+References 
+Security
+https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/jdbc.html
+https://github.com/getarrays/userservice
+https://github.com/amigoscode/spring-boot-security-course
+
+Swagger/OpenAPI
+https://github.com/mgamio/openapi-springboot
+
