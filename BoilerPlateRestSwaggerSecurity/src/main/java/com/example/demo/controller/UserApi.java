@@ -18,11 +18,11 @@ public interface UserApi {
     @ResponseStatus(HttpStatus.OK)
     Collection<User> findUsers();
 
-    @RequestMapping(value = "/{id}", consumes = {  "application/json", "application/xml", "application/x-www-form-urlencoded"  }, method = RequestMethod.POST)
+/*    @RequestMapping(value = "/{id}", consumes = {  "application/json", "application/xml", "application/x-www-form-urlencoded"  }, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<User> updateUser(
             @PathVariable long id, @RequestBody final User newUser)
-            throws Exception;
+            throws Exception;*/
 
     @RequestMapping(value = "/", consumes = {  "application/json", "application/xml", "application/x-www-form-urlencoded"  }, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)

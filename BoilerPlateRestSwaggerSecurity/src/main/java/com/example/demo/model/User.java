@@ -1,29 +1,25 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Table(name="users")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static javax.persistence.FetchType.*;
+import static javax.persistence.GenerationType.*;
+
+@Entity @Data
+@NoArgsConstructor @AllArgsConstructor
+@Table(name="application_users")
 public class User {
-
-    @Id
-    private Long userId;
-    private String firstName;
-    private String lastName;
-    private String userName;
+    @Id @GeneratedValue(strategy = AUTO)
+    private Long id;
+    private String name;
+    private String username;
     private String password;
-    private String userType;
-    private String email;
-    private String user_status;
-    private String role;
-
+    @ManyToMany(fetch = EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 }

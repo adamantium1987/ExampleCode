@@ -30,7 +30,7 @@ public class UserApiController implements UserApi {
     public ResponseEntity<User> createUser(@RequestBody final User newUser) {
         return new ResponseEntity<>(repository.save(newUser), HttpStatus.CREATED);
     }
-    public ResponseEntity<User> updateUser(@PathVariable("id") final long id, @RequestBody final User newUser) {
+  /*  public ResponseEntity<User> updateUser(@PathVariable("id") final long id, @RequestBody final User newUser) {
         return new ResponseEntity<>(repository.findById(id)
                 .map(user -> {
                     user.setFirstName(newUser.getFirstName());
@@ -41,7 +41,7 @@ public class UserApiController implements UserApi {
                     return (repository.save(user));
                 })
                 .orElseGet(() -> (repository.save(newUser))), HttpStatus.OK);
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
