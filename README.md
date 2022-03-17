@@ -34,8 +34,8 @@ Add Browser Endpoints for API  (Thymeleaf?)
 References 
 Security
 https://docs.spring.io/spring-security/reference/servlet/authentication/passwords/jdbc.html
-https://github.com/getarrays/userservice
-https://github.com/amigoscode/spring-boot-security-course
+https://github.com/getarrays/userservice / https://youtu.be/mYKf4pufQWA
+https://github.com/amigoscode/spring-boot-security-course / https://youtu.be/her_7pa0vrg
 
 Swagger/OpenAPI
 https://github.com/mgamio/openapi-springboot
