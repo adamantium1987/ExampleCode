@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security3" lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,9 +10,19 @@
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
 </head>
 <body>
-<h1>This is the homepage after authentication</h1>
-<div class="container">
-    <p> Welcome!</p>
+    <h1>This is the homepage after authentication</h1>
+    <h2> Welcome!</h2>
+    <div sec:authorize="isAuthenticated()">
+        This content is only shown to authenticated users.
+    </div>
+    <div sec:authorize="hasRole('ADMINISTRATOR')">
+        This content is only shown to administrators.
+    </div>
+    <div>
+        User: <span sec:authentication="name">NOT FOUND</span>
+        Spring Roles: <span sec:authentication="principal.authorities">NOT FOUND</span>
+    </div>
+    <div class="container">
         <form class="form-signin" method="get" action="/logout">
             <button class="btn btn-primary btn-block" type="submit">Logout</button>
         </form>

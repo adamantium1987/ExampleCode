@@ -15,6 +15,9 @@ public class BaseController {
 
     @GetMapping("homepage")
     public String getHomepageView(){
+
+        System.out.println();
+
         return "homepage";
     }
 }
