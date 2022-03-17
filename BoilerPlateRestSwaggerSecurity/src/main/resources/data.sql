@@ -1,7 +1,7 @@
-INSERT INTO APPLICATION_USERS values (1, 'User1Name', '1234','admin');
-INSERT INTO APPLICATION_USERS values (2, 'User2Name', '1234','manager');
-INSERT INTO APPLICATION_USERS values (3, 'User3Name', '1234','employee');
-INSERT INTO APPLICATION_USERS values (4, 'User4Name', '1234','customer');
+INSERT INTO APPLICATION_USERS values (1, 'User1Name', '$2a$12$gluwkDnuiEawB5g/ohUGDeV3IeGl3oUxPQmmWVkocZlp360MG91TC','admin');
+INSERT INTO APPLICATION_USERS values (2, 'User2Name', '$2a$12$gluwkDnuiEawB5g/ohUGDeV3IeGl3oUxPQmmWVkocZlp360MG91TC','manager');
+INSERT INTO APPLICATION_USERS values (3, 'User3Name', '$2a$12$gluwkDnuiEawB5g/ohUGDeV3IeGl3oUxPQmmWVkocZlp360MG91TC','employee');
+INSERT INTO APPLICATION_USERS values (4, 'User4Name', '$2a$12$gluwkDnuiEawB5g/ohUGDeV3IeGl3oUxPQmmWVkocZlp360MG91TC','customer');
 
 INSERT INTO ROLE values (1, 'ADMINISTRATOR');
 INSERT INTO ROLE values (2, 'MANAGER');

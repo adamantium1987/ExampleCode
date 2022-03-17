@@ -12,19 +12,19 @@ Username: sa
 Password: password
 
 
-Application Credentials
+Application Credentials (User are setup via data.sql passwords are hased using Bcrypt)
 Admin
 Username: admin
-Password: 123
+Password: 1234
 Manager
 Username: manager
-Password: 123
+Password: 1234
 Employee
 Username: employee
-Password: 123
+Password: 1234
 Customer
 Username: customer
-Password: 123
+Password: 1234
 
 To-Do:
 Improve readme file
